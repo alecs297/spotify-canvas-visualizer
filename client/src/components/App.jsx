@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Login from './Login';
 import Player from './Player';
 import { songHook } from '../hooks/songHook';

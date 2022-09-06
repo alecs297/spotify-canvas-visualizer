@@ -18,6 +18,9 @@ module.exports = {
     container: {
       center: true
     },
+    scale: {
+      flip: '-1',
+    },
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
