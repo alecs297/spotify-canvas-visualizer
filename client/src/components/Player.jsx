@@ -6,7 +6,7 @@ import syncHook from "../hooks/syncHook";
 function Player({song}) {
     const [cover, setCover] = useState(null);
     const [count, setCount] = useState(3);
-    const [mirrorEffect, setMirrorEffect] = useState(1);
+    const [mirrorEffect, setMirrorEffect] = useState(false);
 
     const playerRef = useRef();
 
