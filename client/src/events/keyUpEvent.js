@@ -8,6 +8,12 @@ function decreaseCount(count, setCount) {
     if (count > 1) setCount(count-1);
 }
 
+function cycleMirror(mirrorEffect, setMirrorEffect) {
+    mirrorEffect++;
+    if (mirrorEffect === 3) mirrorEffect = 0;
+    setMirrorEffect(mirrorEffect);
+}
+
 function keyUpEvent(event, count, setCount, mirrorEffect, setMirrorEffect, playerRef) {
     switch (event.key) {
         case "ArrowRight":
@@ -28,9 +34,7 @@ function keyUpEvent(event, count, setCount, mirrorEffect, setMirrorEffect, playe
             window.location.reload();
             break;
         case "m":
-            mirrorEffect++;
-            if (mirrorEffect === 3) mirrorEffect = 0;
-            setMirrorEffect(mirrorEffect);
+            cycleMirror(mirrorEffect, setMirrorEffect)
             break;
         default:
             break;
