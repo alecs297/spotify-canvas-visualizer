@@ -14,7 +14,13 @@ function cycleMirror(mirrorEffect, setMirrorEffect) {
     setMirrorEffect(mirrorEffect);
 }
 
-function keyUpEvent(event, count, setCount, mirrorEffect, setMirrorEffect, playerRef) {
+function toggleHelp(helpRef) {
+    if (helpRef && helpRef.current) {
+        helpRef.current.hidden = !helpRef.current.hidden;
+    }
+}
+
+function keyUpEvent(event, count, setCount, mirrorEffect, setMirrorEffect, playerRef, helpRef) {
     switch (event.key) {
         case "ArrowRight":
         case "ArrowUp":
@@ -34,9 +40,12 @@ function keyUpEvent(event, count, setCount, mirrorEffect, setMirrorEffect, playe
             window.location.reload();
             break;
         case "m":
-            cycleMirror(mirrorEffect, setMirrorEffect)
+            cycleMirror(mirrorEffect, setMirrorEffect);
             break;
+        case "h":
+            toggleHelp(helpRef);
         default:
+            if (window.debug) console.log(event.key)
             break;
     }
 }

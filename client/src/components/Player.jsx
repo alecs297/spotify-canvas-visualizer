@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import keyUpEvent from "../events/keyUpEvent"
 import coverHook from "../hooks/coverHook";
 import syncHook from "../hooks/syncHook";
+import Controls from "./Controls";
 
 function Player({song}) {
     const [cover, setCover] = useState(null);
@@ -9,6 +10,7 @@ function Player({song}) {
     const [mirrorEffect, setMirrorEffect] = useState(false);
 
     const playerRef = useRef();
+    const helpRef = useRef();
 
     coverHook(song, setCover);
     syncHook(song, count, playerRef);
@@ -21,38 +23,42 @@ function Player({song}) {
 
 
     return (
-        <div 
-            ref={playerRef} 
-            tabIndex={0} 
-            onKeyUp={(e) => keyUpEvent(e, count, setCount, mirrorEffect, setMirrorEffect, playerRef)} 
-            className={"h-screen w-screen overflow-hidden justify-center items-center columns-" + count}>
-            {
-                [...Array(count)].map((_, i) => {
+        <div tabIndex={0} onKeyUp={(e) => keyUpEvent(e, count, setCount, mirrorEffect, setMirrorEffect, playerRef, helpRef)}>
+            <Controls defaultHidden={true} helpRef={helpRef}/>
+            
+            <div 
+                ref={playerRef} 
+                className={"h-screen w-screen overflow-hidden justify-center items-center columns-" + count}
+            >
+                {
+                    [...Array(count)].map((_, i) => {
 
-                    const key = "viz-" + i
-                    const isInHalf = (i < (count / 2))
-                    const middleImage = (count % 2 !== 0) ? Math.floor(count / 2) : -1;
+                        const key = "viz-" + i
+                        const isInHalf = (i < (count / 2))
+                        const middleImage = (count % 2 !== 0) ? Math.floor(count / 2) : -1;
 
-                    let contentClassName = defaultContentClassName;
-                    
-                    if (mirrorEffect && (i !== middleImage)) {
-                        if ((mirrorEffect === 1 && isInHalf) || (mirrorEffect === 2 && !isInHalf)) {
-                            contentClassName += mirroredClassname
+                        let contentClassName = defaultContentClassName;
+                        
+                        if (mirrorEffect && (i !== middleImage)) {
+                            if ((mirrorEffect === 1 && isInHalf) || (mirrorEffect === 2 && !isInHalf)) {
+                                contentClassName += mirroredClassname
+                            }
                         }
-                    }
 
-                    return (
-                            
-                        (cover && cover.endsWith("mp4"))
-                        ?
-                            <video key={key} className={contentClassName} loop src={cover} type="video/mp4" autoPlay={true} muted={true}/>
-                        :
-                            <img key={key} className={contentClassName} src={cover}/>
-                            
-                    )
-                })
-            }
+                        return (
+                                
+                            (cover && cover.endsWith("mp4"))
+                            ?
+                                <video key={key} className={contentClassName} loop src={cover} type="video/mp4" autoPlay={true} muted={true}/>
+                            :
+                                <img key={key} className={contentClassName} src={cover}/>
+                                
+                        )
+                    })
+                }
+            </div>
         </div>
+        
     )
 }
 
