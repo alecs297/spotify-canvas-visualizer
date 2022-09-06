@@ -21,10 +21,10 @@ function Controls({defaultHidden=false, helpRef}) {
                     <span className="align-middle">Log out</span>
                 </li>
             </ul>
-            <p className="text-md text-gray-400 my-8">
+            <div className="text-md text-gray-400 my-8">
                 You can toggle this popup at any time by pressing
                 <div className="bg-gray-600 inline-block border border-black-10 m-2 p-2 text-white align-middle text-xs aspect-square w-8">H</div>
-            </p>
+            </div>
         </div>
     )
 }
