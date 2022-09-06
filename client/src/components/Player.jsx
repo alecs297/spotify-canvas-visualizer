@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import keyUpEvent from "../events/keyUpEvent"
-import mouseMoveEvent from "../events/mouseMoveEvent";
 import coverHook from "../hooks/coverHook";
 import syncHook from "../hooks/syncHook";
 
@@ -26,7 +25,6 @@ function Player({song}) {
             ref={playerRef} 
             tabIndex={0} 
             onKeyUp={(e) => keyUpEvent(e, count, setCount, mirrorEffect, setMirrorEffect, playerRef)} 
-            onMouseMove={() => mouseMoveEvent(playerRef)}
             className={"h-screen w-screen overflow-hidden justify-center items-center columns-" + count}>
             {
                 [...Array(count)].map((_, i) => {
@@ -47,7 +45,7 @@ function Player({song}) {
                             
                         (cover && cover.endsWith("mp4"))
                         ?
-                            <video key={key} className={contentClassName} loop src={cover} type="video/mp4" autoPlay={true}/>
+                            <video key={key} className={contentClassName} loop src={cover} type="video/mp4" autoPlay={true} muted={true}/>
                         :
                             <img key={key} className={contentClassName} src={cover}/>
                             
