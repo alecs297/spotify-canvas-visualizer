@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import keyUpEvent from "../hooks/keyUpEvent"
+import syncVideos from "../utils/sync";
 
 function Player({song}) {
     const [cover, setCover] = useState(null);
     const [count, setCount] = useState(3);
+    const playerRef = useRef();
 
     useEffect(() => {
 
@@ -19,19 +22,23 @@ function Player({song}) {
         }
     }, [song.id])
 
+    useEffect(() => {
+        if (playerRef.current) syncVideos(playerRef)
+    }, [song.id, count])
+
     if (!cover) return
 
     return (
-        <div className={"h-screen w-screen overflow-hidden justify-center items-center columns-" + count}>
+        <div ref={playerRef} tabIndex={0} onKeyUp={(e) => keyUpEvent(e, count, setCount, playerRef)} className={"h-screen w-screen overflow-hidden justify-center items-center columns-" + count}>
             {
                 [...Array(count)].map((_, i) => {
                     return (
                             
                         (cover && cover.endsWith("mp4"))
                         ?
-                            <video className="min-h-full min-w-full" loop src={cover} type="video/mp4" autoPlay={true}/>
+                            <video key={"viz-" + i} className="min-h-screen w-full" loop src={cover} type="video/mp4" autoPlay={true}/>
                         :
-                            <img className="min-h-full min-w-full self-center" src={cover}/>
+                            <img key={"viz-" + i} className="min-h-screen w-full self-center" src={cover}/>
                             
                     )
                 })

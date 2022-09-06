@@ -1,23 +1,9 @@
-/**
- * https://github.com/thelinmichael/spotify-web-api-node/issues/342#issuecomment-792382120
- * 
- * thank you for this fix
- */
+import { getRedirectUrl } from "../utils/auth";
 
-import SpotifyWebApi from 'spotify-web-api-node';
-import SpotifyWebApiServer from 'spotify-web-api-node/src/server-methods';
-import { getState } from '../utils/states';
-
-SpotifyWebApi.prototype.createAuthorizeURL = SpotifyWebApiServer.createAuthorizeURL;
 
 function Login() {
-    const scopes = ['user-read-currently-playing']
-    const API = new SpotifyWebApi({
-        clientId: import.meta.env.VITE_CLIENT_ID,
-        redirectUri: `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/`
-    });
-
-    const redirect_url = API.createAuthorizeURL(scopes, getState(), false, 'token');
+    
+    const redirect_url = getRedirectUrl();
 
     return (
         <div className='grid place-content-around h-screen w-full center content-center font-semibold'>
