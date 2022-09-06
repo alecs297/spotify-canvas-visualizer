@@ -8,7 +8,7 @@ export function syncVideos(parentRef) {
 
     if (!parentRef.current) return
 
-    [...parentRef.current.children].forEach(video => {
+    [...parentRef.current.children[1].children].forEach(video => {
         if (isValidVideo(video)) {
             if (!time) time = video.currentTime;
             video.currentTime = time;

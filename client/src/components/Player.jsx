@@ -23,13 +23,14 @@ function Player({song}) {
 
 
     return (
-        <div tabIndex={0} onKeyUp={(e) => keyUpEvent(e, count, setCount, mirrorEffect, setMirrorEffect, playerRef, helpRef)}>
+        <div 
+            tabIndex={0}
+            onKeyUp={(e) => keyUpEvent(e, count, setCount, mirrorEffect, setMirrorEffect, playerRef, helpRef)}
+            ref={playerRef} 
+        >
             <Controls defaultHidden={true} helpRef={helpRef}/>
             
-            <div 
-                ref={playerRef} 
-                className={"h-screen w-screen overflow-hidden justify-center items-center columns-" + count}
-            >
+            <div className={"h-screen w-screen overflow-hidden justify-center items-center columns-" + count}>
                 {
                     [...Array(count)].map((_, i) => {
 
