@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import keyUpEvent from "../events/keyUpEvent"
 import coverHook from "../hooks/coverHook";
-import syncHook from "../hooks/syncHook";
+import { syncVideos } from "../utils/video";
 import Controls from "./Controls";
 
 function Player({song}) {
@@ -13,7 +13,6 @@ function Player({song}) {
     const helpRef = useRef();
 
     coverHook(song, setCover);
-    syncHook(song, count, playerRef);
     
 
     if (!cover) return
@@ -50,7 +49,9 @@ function Player({song}) {
                                 
                             (cover && cover.endsWith("mp4"))
                             ?
-                                <video key={key} className={contentClassName} loop src={cover} type="video/mp4" autoPlay={true} muted={true}/>
+                                <video key={key} onLoadedData={() => {
+                                    if (playerRef.current) syncVideos(playerRef);
+                                }} className={contentClassName} loop src={cover} type="video/mp4" autoPlay={true} muted={true}/>
                             :
                                 <img key={key} className={contentClassName} src={cover}/>
                                 
