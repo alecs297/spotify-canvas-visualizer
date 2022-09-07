@@ -30,7 +30,7 @@ function Player({song}) {
         >
             <Controls defaultHidden={true} helpRef={helpRef}/>
             
-            <div className={"h-screen w-screen overflow-hidden justify-center items-center columns-" + count}>
+            <div className={"h-screen w-screen overflow-hidden justify-center items-center gap-0 columns-" + count}>
                 {
                     [...Array(count)].map((_, i) => {
 
