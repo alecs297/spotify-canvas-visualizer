@@ -10,7 +10,7 @@ function coverHook(song, setCover) {
                 if (res.success) {
                     setCover(res.canvas);
                 } else {
-                    setCover(song.image.url)
+                    setCover(import.meta.env.VITE_FALLBACK ?? song.image.url)
                 }
             })
         }
