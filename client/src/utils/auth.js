@@ -26,6 +26,7 @@ export function getRedirectUrl() {
 }
 
 export function login(token) {
+    if (!token || token === "null") return sessionStorage.clear();
     sessionStorage.setItem("token", token);
     window.history.replaceState(null, null, "/")
 }
