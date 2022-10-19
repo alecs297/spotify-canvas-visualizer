@@ -6,7 +6,9 @@ import cors from '@koa/cors'
 dotenv.config()
 
 const app = new Koa();
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_DOMAIN || "localhost"
+}));
 
 app.use(async ctx => {
     let id = ctx.path.slice(1);
