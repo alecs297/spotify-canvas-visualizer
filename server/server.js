@@ -7,7 +7,7 @@ dotenv.config()
 
 const app = new Koa();
 app.use(cors({
-    origin: process.env.CLIENT_DOMAIN || "localhost"
+    origin: process.env.CLIENT_DOMAIN || "http://localhost:8080"
 }));
 
 app.use(async ctx => {
