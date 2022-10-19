@@ -22,7 +22,7 @@ export function getRedirectUrl() {
         clientId: import.meta.env.VITE_CLIENT_ID,
         redirectUri: `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/`
     });
-    return API.createAuthorizeURL(scopes, getState(), false, 'token');
+    return API.createAuthorizeURL(scopes, getState(), true, 'token');
 }
 
 export function login(token) {
