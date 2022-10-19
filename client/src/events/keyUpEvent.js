@@ -1,4 +1,5 @@
 import { logout } from "../utils/auth";
+import { syncVideos } from "../utils/video";
 
 function increaseCount(count, setCount) {
     setCount(count+1);
@@ -44,6 +45,8 @@ function keyUpEvent(event, count, setCount, mirrorEffect, setMirrorEffect, playe
             break;
         case "h":
             toggleHelp(helpRef);
+        case "s":
+            syncVideos(playerRef);
         default:
             if (window.debug) console.log(event.key)
             break;

@@ -17,6 +17,10 @@ function Controls({defaultHidden=false, helpRef}) {
                     <span className="align-middle">Cycle mirror mode</span>
                 </li>
                 <li className="m-3">
+                    <div className="bg-gray-600 inline-block border border-black-10 m-2 p-2 align-middle text-xs aspect-square w-8">S</div>
+                    <span className="align-middle">Force canvas re-sync</span>
+                </li>
+                <li className="m-3">
                     <div className="bg-gray-600 inline-block border border-black-10 m-2 p-2 align-middle text-xs aspect-square w-8">L</div>
                     <span className="align-middle">Log out</span>
                 </li>
