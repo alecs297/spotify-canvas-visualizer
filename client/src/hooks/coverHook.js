@@ -13,6 +13,7 @@ function coverHook(song, setCover) {
                     setCover(import.meta.env.VITE_FALLBACK ?? song.image.url)
                 }
             })
+            .catch(() => setCover(import.meta.env.VITE_FALLBACK ?? song.image.url))
         }
     }, [song.id])
 }
