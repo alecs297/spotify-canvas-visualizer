@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import keyUpEvent from "../events/keyUpEvent"
 import coverHook from "../hooks/coverHook";
 import { syncVideos } from "../utils/video";
+import syncHook from "../hooks/syncHook";
 import Controls from "./Controls";
 
 function Player({song}) {
@@ -13,6 +14,7 @@ function Player({song}) {
     const helpRef = useRef();
 
     coverHook(song, setCover);
+    syncHook(song, count, playerRef);
     
 
     if (!cover) return
