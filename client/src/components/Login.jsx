@@ -1,9 +1,10 @@
 import { getRedirectUrl } from "../utils/auth";
 import Controls from "./Controls";
+import Settings from "./Settings";
 
 function LoginButton({redirect_url}) {
     return (
-        <div className='rounded-lg bg-green-400 p-3 my-5 mb-20 w-2/3 mx-auto h-16 cursor-pointer' onClick={() => {
+        <div className='rounded-lg bg-green-400 p-3 my-5 w-2/3 mx-auto h-16 cursor-pointer' onClick={() => {
             window.location.href = redirect_url;
         }}>
             <svg data-icon="spotify" className="w-1/5 mx-auto inline h-full text-black" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
@@ -30,9 +31,9 @@ function Disclaimer() {
     );
 }
 
-function Login() {
+function Login({publicToken, setPublicToken}) {
     
-    const redirect_url = getRedirectUrl();
+    const redirect_url = getRedirectUrl(publicToken);
 
     return (
         <div className='grid place-content-around h-screen w-full center content-center font-semibold'>
@@ -44,6 +45,7 @@ function Login() {
                 </p>
                 <p className='text-base mt-8 mb-12'>Everything is stored within your browser :)</p>
                 <LoginButton   redirect_url={redirect_url}  />
+                <Settings publicToken={publicToken} setPublicToken={setPublicToken}/>
                 <Controls/>
                 <Disclaimer/>
             </div>

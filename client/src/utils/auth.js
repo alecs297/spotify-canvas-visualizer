@@ -16,10 +16,10 @@ function getState() {
     return state;
 }
 
-export function getRedirectUrl() {
+export function getRedirectUrl(publicToken) {
     const scopes = ['user-read-currently-playing']
     const API = new SpotifyWebApi({
-        clientId: import.meta.env.VITE_CLIENT_ID,
+        clientId: publicToken,
         redirectUri: `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/`
     });
     return API.createAuthorizeURL(scopes, getState(), true, 'token');
