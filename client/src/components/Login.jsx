@@ -36,7 +36,7 @@ function Login({publicToken, setPublicToken}) {
     const redirect_url = getRedirectUrl(publicToken);
 
     return (
-        <div className='grid place-content-around h-screen w-full center content-center font-semibold'>
+        <div className='grid place-content-around min-h-screen w-full center content-center font-semibold'>
             <div className='w-6/7 text-center'>
                 <h1 className='text-6xl mb-12 font-bold'>Get started</h1>
                 <p className='text-xl'>
